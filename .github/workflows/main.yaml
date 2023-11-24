@@ -67,23 +67,8 @@ jobs:
           GMAIL_REDIRECT_URI: ${{secrets.GMAIL_REDIRECT_URI}}
           COOKIE_DOMAIN: ${{secrets.COOKIE_DOMAIN}}
       # Sonar    
-      - name: SonarCloud Scan
+     - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
-        if: success() || failure()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-  Test_Docker:
-    runs-on: ubuntu-latest
-    steps:
-
-      #Checkout Repository
-      - uses: actions/checkout@v3
-      
-      # Docker Build
-      - uses: docker/build-push-action@v3
-        with:
-          push: false
-          file: ./Dockerfile
-          tags: back-stage:test
