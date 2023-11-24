@@ -2,4 +2,3 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 npm run test
-git config advice.ignoredHook false
